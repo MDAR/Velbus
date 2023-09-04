@@ -1,0 +1,37 @@
+
+	Group 				WholeHouse_Thermostat					"Whole House Thermostat"													{ga="Thermostat" [roomHint="House", modes="off=SAFE,heat=DAY,eco=NIGHT,on=DAY"], alexa="Endpoint.Thermostat" }
+	Group:Number:AVG 	WholeHouse_CurrentTemperature 			"Whole House Current Temperature" 			(WholeHouse_Thermostat)			{ga="thermostatTemperatureAmbient" ,		alexa="TemperatureSensor.temperature" }
+	Group:Number:AVG 	WholeHouse_CurrentTargetTemperature 	"Whole House Current Target Temperature"	(WholeHouse_Thermostat)			{ga="thermostatTemperatureSetpoint",		alexa="ModeController.mode" [friendlyNames="@Setting.Preset", supportedModes="SAFE=Safe,NIGHT=Night,DAY=Day,COMFORT=Comfort"]}
+	Group:String 		WholeHouse_ThermostatMode 				"Whole House Thermostat mode"	  	 		(WholeHouse_Thermostat)			{ga="thermostatMode",						alexa="ThermostatController.thermostatMode" [COOL="COOLING",HEAT="HEATING"]}
+	Group:String 		WholeHouse_ThermostatOperatingMode 		"Whole House Thermostat operating mode"	  	(WholeHouse_Thermostat)
+	
+//	Group:Switch	WholeHouse_HeatingRelay		"WholeHouse Heating"	<radiator>
+//	Group:Switch	WholeHouse_CoolingRelay     "WholeHouse Cooling"	<climate>
+	
+	
+	
+	// Adding Preset Dissemiation
+	
+	Group:Number:AVG	 WholeHouse_HeatingComfortTarget 	"WholeHouse Heating Comfort Target Temperature"		<temperature>
+	Group:Number:AVG	 WholeHouse_HeatingDayTarget 		"WholeHouse Heating Day Target Temperature"			<temperature>
+	Group:Number:AVG	 WholeHouse_HeatingNightTarget 		"WholeHouse Heating Night Target Temperature"		<temperature>
+	Group:Number:AVG	 WholeHouse_HeatingAntifrostTarget	"WholeHouse Heating Antifrost Target Temperature"	<temperature>
+	                                                 
+	
+	
+	
+	
+	Group:Switch:OR(ON,OFF)		WholeHouse_HeatingRelay			"Whole House Heating Relay"	<radiator>	
+	Group:Switch:OR(ON,OFF)		WholeHouse_CoolingRelay			"Whole House Cooling Relay" <climate>	
+  
+
+	Group:Number:COUNT(ON)		WholeHouse_HeatingRelay_Count					"WholeHouse Heating Number of  [%s]"			<radiator>	
+	Number						WholeHouse_HeatingRelay_CountLogging			"WholeHouse Heating Logged Number of  [%s]"		<radiator>
+	
+	
+	
+	
+	Group:Number:COUNT(ON)		WholeHouse_CoolingRelay_Count					"WholeHouse Cooling Number of  [%s]"			<climate>	
+	Number						WholeHouse_CoolingRelay_CountLogging			"WholeHouse Cooling logged Number of  [%s]"		<climate>
+	
+//	Switch 			WholeHouse_ForceSafeMode	"Whole House - Forced into SAFE mode"		{channel="velbus:vmb4ryld:d498f1f3:03:CH2"}

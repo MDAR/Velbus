@@ -1,0 +1,46 @@
+//HOUSE MODEL
+
+//	Guide to buildin semantic model in Text files
+//		https://community.openhab.org/t/oh3-semantic-model-setup-via-tags-in-configuration-items-files/112520
+
+// List of valid locations that can be entered in the ["location"} section
+//		https://github.com/openhab/openhab-core/blob/main/bundles/org.openhab.core.semantics/model/SemanticTags.csv
+
+
+// Convention
+
+//	Type		MachineName				"Human Name"			<icon>			(ParentGroup)		["SemanticClass"}
+		
+		
+//INDOOR		
+	Group 		gIndoor					"Indoor"													["Indoor"]
+			
+			
+	Group		gGroundFloor			"Ground Floor"			<groundfloor>	(gIndoor)			["GroundFloor"]
+
+// Lounge on the ground floor
+	Group		gLounge					"Lounge"				<sofa>			(gGroundFloor)		["LivingRoom"]
+	Group 		gLoungeLight			"Lounge Room Light" 	<light> 		(gLounge)			 ["Lightbulb"]
+	Group 		gLoungeThermostat		"Lounge Thermostat" 	<heating> 		(gLounge)			 ["HVAC"]
+	
+
+
+// FIRST FLOOR	
+	
+	Group		gFirstFloor				"First Floor"			<firstfloor>	(gIndoor)			["FirstFloor"]
+
+// Bedroom on the first floor
+	Group		gBedroom				"Bedroom"								(gFirstFloor)		["Bedroom"]
+	Group 		gBedroomLight			"Bedroom Lights" 		<light> 		(Bedroom)			["Lightbulb"]
+	Group 		gBedroomThermostat	 	"Bedroom Thermostat" 	<heating> 		(Bedroom)			["HVAC"]
+
+
+
+
+//OUTDOOR	
+	Group		gOutdoor				"Outdoor"													["Outdoor"]
+	
+// Cabin outdoor	
+	Group		gCabin					"Cabin"									(gOutdoor)			["SummerHouse"]
+	Group 		gCabinLight			 	"Cabin Lights" 			<light> 		(gCabin)			["Lightbulb"]
+	Group 		gCabinThermostat	 	"Cabin Thermostat" 		<heating> 		(gCabin)			["HVAC"]

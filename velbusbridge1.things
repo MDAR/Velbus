@@ -1,0 +1,24 @@
+// Please note that I have not tested the USB port access bridges in this file.
+//
+// The Bridge (internal) name is also the same for each, so that they can be interchanged without having to edit other files (*.items and *.rules for example)
+
+
+
+// Network bridge, for use with TCP servers like Velserv, velbus-tcp, Velbus_PB_Server or the upcoming Velbus TCP gateway. Running on the same machine
+	Bridge velbus:networkbridge:VelbusNetworkBridge "Velbus Network Bridge - Loopback" @ "Cabinet" [ address="127.0.0.1", port=6000 ]
+
+
+
+// Network bridge, for use with TCP servers like Velserv, velbus-tcp, Velbus_PB_Server or the upcoming Velbus TCP gateway, running on a different machine on your LAN
+//	Bridge velbus:networkbridge:VelbusNetworkBridge "Velbus Network Bridge - at 192.168.0.100" @ "Control" [ address="192.168.0.100", port=6000 ]
+
+
+
+
+
+// USB bridge for use on Linux with symlink ttyACM0
+//	Bridge velbus:bridge:VelbusBridge "Velbus USB / RS232 Bridge - ttyACM0" @ "Control" [ port="/dev/ttyACM0" ]
+
+
+// USB bridge for use with Windows, using Com5
+//	Bridge velbus:bridge:VelbusBridge "Velbus USB / RS232 Bridge - Com5" @ "Control" [ port="com5" ]
