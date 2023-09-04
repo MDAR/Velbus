@@ -1,0 +1,182 @@
+// Aug 8th 2022 - For use with openHAB3 onwards 
+// 		Alexa Version 3 metadata
+//		Semantic modelling, see also the Semantic building template
+//		Groups for combing lights or seeing how many circuits are on
+//		Bug, removed 2 x [ from line 17
+
+
+
+//	String 	VelbusRefresh 	"Velbus Refresh"
+//	String 	ExternalIP		"External IP"
+
+
+
+//		Group CabinGPO_Thermostat					"Cabin Thermostat"					<temperature>								{ga="Thermostat" [roomHint="Cabin", modes="off=SAFE,heat=DAY,eco=NIGHT,on=DAY"], alexa="Thermostat" [name="Cabin Thermostat", description="Velbus Thermostat in Cabin"] }
+//		Number CabinGPO_CurrentTemperature 			"Cabin Current Temperature" 		<heating>	( CabinGPO_Thermostat ,WholeHouse_CurrentTemperature		)	{ channel="velbus:vmbgpod:VelbusNetworkBridge:05:input#CH33"								, 	ga="thermostatTemperatureAmbient" ,		alexa="CurrentTemperature" 		[name="Cabin Current Temperature", description="Velbus current temperature in Cabin"]	} // This is either CH9 or CH33
+//		Number CabinGPO_CurrentTargetTemperature 	"Cabin Current Target Temperature"	<heating>	( CabinGPO_Thermostat ,WholeHouse_CurrentTargetTemperature	)	{ channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#currentTemperatureSetpoint"		, 	ga="thermostatTemperatureSetpoint",		alexa="HeatingSetpoint"			[name="Cabin Target Temperature", description="Velbus Target temperature in Cabin"]		}
+//		String CabinGPO_ThermostatMode 				"Cabin Thermostat mode"	  	 		<heating>	( CabinGPO_Thermostat, WholeHouse_ThermostatMode			)	{ channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#mode"							, 	ga="thermostatMode"  ,					alexa="HeatingCoolingMode" 		[name="Cabin Thermostat Mode", description="Velbus thermostat modes, Safe, Night, Day and Comfort", actionMappings="SAFE=Safe,NIGHT=Night,DAY=Day,COMFORT=Comfort"]}
+//		String CabinGPO_ThermostatOperatingMode 	"Cabin Thermostat operating mode"	<heating>	( CabinGPO_Thermostat, WholeHouse_ThermostatOperatingMode	)	{ channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#operatingMode" 					,											alexa="HeatingCoolingMode" 		[actionMappings="COOL=COOLING,HEAT=HEATING"]	}
+//		
+//				  
+//	
+//	
+//		  
+//	Number CabinGPO_HeatingComfortTarget 	"Cabin Heating Comfort Target Temperature"	<temperature>	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#heatingModeComfortTemperatureSetpoint"		}
+//	Number CabinGPO_HeatingDayTarget 		"Cabin Heating Day Target Temperature"		<temperature>	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#heatingModeDayTemperatureSetpoint"			}
+//	Number CabinGPO_HeatingNightTarget 		"Cabin Heating Night Target Temperature"	<temperature>	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#heatingModeNightTemperatureSetpoint"																	}
+//	Number CabinGPO_HeatingAntifrostTarget	"Cabin Heating Antifrost Target Temperature"<temperature>	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#heatingModeAntiFrostTemperatureSetpoint"		}
+//	
+//	
+//	Number CabinGPO_CoolingComfortTarget	 "Cabin Cooling Comfort Target Temperature"	<temperature>	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#coolingModeComfortTemperatureSetpoint"		}
+//	Number CabinGPO_CoolingDayTarget		"Cabin Cooling Day Target Temperature"	  	<temperature>	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#coolingModeDayTemperatureSetpoint"		}
+//	Number CabinGPO_CoolingNightTarget 		"Cabin Cooling Night Target Temperature"	<temperature> 	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#coolingModeNightTemperatureSetpoint"																	}
+//	Number CabinGPO_CoolingSafeTarget		"Cabin Cooling Safe Target Temperature"		<temperature>	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:thermostat#coolingModeSafeTemperatureSetpoint"	}
+	  
+
+// Edit the following to suit the relay channels in use	
+	
+//	Switch CabinGPO_HeatingRelay  	"Cabin Heating Relay"	<radiator>	(WholeHouse_HeatingRelay_Count,WholeHouse_HeatingRelay)  {channel="velbus:vmb4ryld:VelbusNetworkBridge:02:CH4"}
+// 	Switch CabinGPO_CoolingRelay  	"Cabin Cooling Relay"	<climate>	(WholeHouse_CoolingRelay_Count,WholeHouse_CoolingRelay)  {channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH3"}
+
+
+
+
+//	Group:Switch:OR(ON,OFF) 		LoungeAllLights			"Lounge lights any on"
+//	Group:Number:COUNT("ON")		LoungeAllLightCount		"Lounge How many lights on"
+//	Group:Dimmer:AVG	LoungeLXGroup	"Group of lights"
+
+
+
+//	Group	ColourPickers		"All Colour Pickers"
+
+
+// Edit the following to suit the Dimmer channels in use - Any colour item should be put into the (ColourPickers) group
+	
+//	Color	BathroomColour			"Bathroom Colour"						<colorpicker>	(ColourPickers)						{ga="light",	alexa="light.color"[name="Colour Light", description="Smart Colour Light"]}
+//	Dimmer	BathroomColour_RED  	"Bathroom Red"							<slider>											{channel="velbus:vmb4dc:VelbusNetworkBridge:BF:CH1"}
+//	Dimmer	BathroomColour_GREEN  	"Bathroom Green"						<slider>											{channel="velbus:vmb4dc:VelbusNetworkBridge:BF:CH2"}
+//	Dimmer	BathroomColour_BLUE  	"Bathroom Blue"							<slider>											{channel="velbus:vmb4dc:VelbusNetworkBridge:BF:CH3"}
+//	Dimmer	BathroomColour_WHITE  	"Bathroom White"						<slider>											{channel="velbus:vmb4dc:VelbusNetworkBridge:BF:CH4", ga="Light" [roomHint="Bathroom"], alexa="Light" [name="Dimmable Light", description="Super Smart Dimming Light"]}
+//
+//
+//
+//	Color	MidRoomColour			"Middle Bedroom Colour"					<colorpicker>	(ColourPickers)				{ga="light",	alexa="BrightnessController.brightness,PowerController.powerState,ColorController.color"}
+//	Dimmer	MidRoomColour_RED    	"Middle Bedroom Red"					<slider>									{channel="velbus:vmb4dc:VelbusNetworkBridge:D2:CH1"}
+//	Dimmer	MidRoomColour_GREEN   	"Middle Bedroom Green"					<slider>									{channel="velbus:vmb4dc:VelbusNetworkBridge:D2:CH2"}
+//	Dimmer	MidRoomColour_BLUE    	"Middle Bedroom Blue"					<slider>									{channel="velbus:vmb4dc:VelbusNetworkBridge:D2:CH3"}
+//	Dimmer	MidRoomColour_WHITE 	"Middle Bedroom  White"					<slider>									{channel="velbus:vmb4dc:VelbusNetworkBridge:D2:CH4", ga="Light" [roomHint="Middle Bedroom"], alexa="Light" [name="Dimmable Light", description="White Smart Dimming Light"]}
+
+
+// Mains dimmer
+//	Dimmer	MainsDimmer01  	"Mains Dimmer"									<slider>									{channel="velbus:vmbdmir:VelbusNetworkBridge:D1:CH1", ga="Light" [roomHint="Model"], alexa="Light"}
+	
+	
+// Lighting	
+
+//	Switch LightingRelay01  	"Lighting Relay 01"	 		<switch>		 {channel="velbus:vmb4ryno:VelbusNetworkBridge:74:CH1", alexa="Light.PowerState" [name="Light Switch", description="Super Smart Light"]	, expire="1h,command=OFF"}	// will reset to OFF after 1 hour
+//	Switch LightingRelay02  	"Lighting Relay 02"	 		<switch>		 {channel="velbus:vmb4ryno:VelbusNetworkBridge:74:CH2", alexa="Light.PowerState" [name="Light Switch", description="Super Smart Light"]}
+//	Switch LightingRelay03  	"Lighting Relay 03"	 		<switch>		 {channel="velbus:vmb4ryno:VelbusNetworkBridge:74:CH3", alexa="Light.PowerState" [name="Light Switch", description="Super Smart Light"]}
+//	Switch LightingRelay04  	"Lighting Relay 04"	 		<switch>		 {channel="velbus:vmb4ryno:VelbusNetworkBridge:74:CH4", alexa="Light.PowerState" [name="Light Switch", description="Super Smart Light"]}
+
+
+// VMB7IN - Energy monitoring / pulse counter, Add Unit of Measurement and icon as required
+//	Number	VMB7IN_0A_Counter_1					"Electricity Usage Total"		<energy>	{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter1"}
+//	Number	VMB7IN_0A_Counter_1_Current			"Electricity Usage Current"		<energy>	{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter1Current"}
+//	Number	VMB7IN_0A_Counter_2					"Gas Usage"						<gas>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter"}
+//	Number	VMB7IN_0A_Counter_2_Current			"Gas Usage Current"				<gas>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter2Current"}
+//	Number	VMB7IN_0A_Counter_3					"All Water usage"				<flow>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter3"}
+//	Number	VMB7IN_0A_Counter_3_Current			"All Water usage Current"		<flow>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter3Current"}
+//	Number	VMB7IN_0A_Counter_4					"Hot Water usage"				<flow>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter4"}
+//	Number	VMB7IN_0A_Counter_4_Current			"Hot Water usage Current"		<flow>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter4Current"}
+
+
+
+// Edit the following to suit the relay channels in use	
+	
+//	Switch Loft1RY_CH1  	"Loft 12V PSU"			<switch>			{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH1"		, 	ga="Outlet"					,	alexa="Switch" [name="Socket", description="Switched socket"]}
+//	Switch Loft1RY_CH2  	"Loft 1RY Unused"							{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH2"		, 	ga="Outlet"					,	alexa="Coffeemaker" [name="Coffee", description="Coffee AMchine"]}
+//	Switch Loft1RY_CH3  	"Loft 1RY Lounge Fan"						{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH3"		,	ga="Fan"					,	alexa="Fan"} 
+//	Switch Loft1RY_CH4  	"Lounge as Bedroom"		<bedroom_blue>		{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH4"		, 	ga="Outlet" [ tfaAck=true ]	, 	alexa="Switch" [name="Desk Fan", description="My desk fan"]}
+//	Switch Loft1RY_CH5  	"House Awake"			<alarm>				{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH5"}
+
+
+//	Meteo channels
+//	Number:Temperature Meteo_Temperature	"Weather Station Temperature"	<temperature>	{channel="velbus:vmbmeteo:VelbusNetworkBridge:FE:weatherStation#CH10"}
+//	Number:Length Meteo_Rainfall			"Weather Station Rainfall"		<rain>			{channel="velbus:vmbmeteo:VelbusNetworkBridge:FE:weatherStation#CH11"}
+//	Number:Illuminance Meteo_LightLevel		"Weather Station Light Level"	<sun>			{channel="velbus:vmbmeteo:VelbusNetworkBridge:FE:weatherStation#CH12"}
+//	Number:Speed Meteo_Windspeed			"Weather Station Wind Speed"	<wind>			{channel="velbus:vmbmeteo:VelbusNetworkBridge:FE:weatherStation#CH13"}
+
+
+// Motor controllers - blinds, curtains, windows, projection screens etc
+
+// or Alexa command PercentageController.percentage
+
+
+//	Rollershutter 	Door	 "Door"		{channel="velbus:vmb2ble:VelbusNetworkBridge:61:CH1"	,	alexa="Blind,PositionState" [name="Large Window Blind", description="Largest Window blind"]}
+//	Rollershutter 	Roof 	 "Roof"		{channel="velbus:vmb2ble:VelbusNetworkBridge:61:CH2"	,	alexa="Blind,PositionState" [name="Small Window Blind", description="Smallest Window blind", capabilityNames="@Setting.Position", supportedCommands="UP=@Value.Up:@Value.Open,DOWN=@Value.Down:@Value.Close,STOP=@Value.Stop", supportedRange="0:100:1", unitOfMeasure="Percent", actionMappings="Close=DOWN,Open=UP,Lower=DOWN,Raise=UP,Stop=STOP", stateMappings="Closed=100,Open=0:99"]}
+
+
+
+
+
+	// Ensure these groups are active in at least 1 Items file and add the Minute and Hour limiting rule
+
+// Group 	g_Minute		"Limit Alarm Minute"
+// Group 	g_Hour			"Limit Alarm Hour"
+
+
+
+																																																			   // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Switch CabinGPO_ClockAlarm_ClockAlarm1Enabled 			"Cabin Alarm 1 Enabled"							//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm1Enabled"}                // Add ONLY if you want to use the Global alarm option in the Bridge
+//	String CabinGPO_ClockAlarm_ClockAlarm1Type 				"Cabin Alarm 1 Type"							//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm1Type"}                   // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Number CabinGPO_ClockAlarm_ClockAlarm1WakeupHour		"Cabin Alarm 1 Wake Hour"		( g_Hour )		//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm1WakeupHour"}             // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Number CabinGPO_ClockAlarm_ClockAlarm1WakeupMinute		"Cabin Alarm 1 Wake Minute"		( g_Minute )	//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm1WakeupMinute"}           // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Number CabinGPO_ClockAlarm_ClockAlarm1BedtimeHour		"Cabin Alarm 1 Bed Hour"		( g_Hour )		//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm1BedtimeHour"}            // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Number CabinGPO_ClockAlarm_ClockAlarm1BedtimeMinute		"Cabin Alarm 1 Bed Minute"		( g_Minute )	//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm1BedtimeMinute"}          // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Switch CabinGPO_ClockAlarm_ClockAlarm2Enabled			"Cabin Alarm 2 Enabled"							//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm2Enabled"}                // Add ONLY if you want to use the Global alarm option in the Bridge
+//	String CabinGPO_ClockAlarm_ClockAlarm2Type           	"Cabin Alarm 2 Type"							//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm2Type"}                   // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Number CabinGPO_ClockAlarm_ClockAlarm2WakeupHour    	"Cabin Alarm 2 Wake Hour"		( g_Hour )		//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm2WakeupHour"}             // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Number CabinGPO_ClockAlarm_ClockAlarm2WakeupMinute   	"Cabin Alarm 2 Wake Minute"		( g_Minute )	//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm2WakeupMinute"}           // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Number CabinGPO_ClockAlarm_ClockAlarm2BedtimeHour   	"Cabin Alarm 2 Bed Hour"		( g_Hour )		//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm2BedtimeHour"}            // Add ONLY if you want to use the Global alarm option in the Bridge
+//	Number CabinGPO_ClockAlarm_ClockAlarm2BedtimeMinute  	"Cabin Alarm 2 Bed Minute"		( g_Minute )	//	{channel="velbus:vmbgpod:VelbusNetworkBridge:05:clockAlarm#clockAlarm2BedtimeMinute"}          // Add ONLY if you want to use the Global alarm option in the Bridge
+
+
+
+
+
+
+// OLED Extras
+//	String	CabinGPO_Memo					"Cabin Memotext"				<text>					{channel="velbus:vmbgpod:CabinOD:05:oledDisplay#MEMO",	ga="text"}
+//	Switch	CabinGPO_Screensaver			"Cabin Screen saver"			<screen>				{channel="velbus:vmbgpod:CabinOD:05:oledDisplay#SCREENSAVER"}
+
+
+// Button mimicking - Send "PRESSED" or "LONG_PRESSED" to this string
+
+//	String	CabinGPO_Button01	"CabinGPO Button 1"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH1", expire="1s,state=RELEASED"} 	 //reverts to Released after 1 second
+//	String	CabinGPO_Button02	"CabinGPO Button 2"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH2", expire="1s,state=RELEASED"}
+//	String	CabinGPO_Button03	"CabinGPO Button 3"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH3", expire="1s,state=RELEASED"}
+//	String	CabinGPO_Button04	"CabinGPO Button 4"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH4", expire="1s,state=RELEASED"}
+//	String	CabinGPO_Button05	"CabinGPO Button 5"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH5", expire="1s,state=RELEASED"}
+//	String	CabinGPO_Button06	"CabinGPO Button 6"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH6", expire="1s,state=RELEASED"}
+//	String	CabinGPO_Button07	"CabinGPO Button 7"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH7", expire="1s,state=RELEASED"}
+//	String	CabinGPO_Button01	"CabinGPO Button 8"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH8", expire="1s,state=RELEASED"}
+
+
+// LED Feedback
+//	String	CabinGPO_LED_Feedback_BT1 		"Cabin LED Feedback Button 1"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH1"}
+//	String	CabinGPO_LED_Feedback_BT2 		"Cabin LED Feedback Button 2"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH2"}
+//	String	CabinGPO_LED_Feedback_BT3 		"Cabin LED Feedback Button 3"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH3"}
+//	String	CabinGPO_LED_Feedback_BT4 		"Cabin LED Feedback Button 4"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH4"}
+//	String	CabinGPO_LED_Feedback_BT5 		"Cabin LED Feedback Button 5"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH5"}
+//	String	CabinGPO_LED_Feedback_BT6 		"Cabin LED Feedback Button 6"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH6"}
+//	String	CabinGPO_LED_Feedback_BT7 		"Cabin LED Feedback Button 7"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH7"}
+//	String	CabinGPO_LED_Feedback_BT8 		"Cabin LED Feedback Button 8"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH8"}
+
+
+
+
+// Useful information
+
+// https://www.openhab.org/docs/ecosystem/alexa/
+
+// https://www.openhab.org/docs/ecosystem/google-assistant/

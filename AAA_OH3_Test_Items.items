@@ -1,0 +1,171 @@
+//		DELETE THIS FILE WHEN YOU ARE HAPPY
+
+
+// Dec 4th 2021 - For use with openHAB3 onwards 
+
+// slight edit to expire in button mimic
+// Change g_Minute & g_Hour
+
+
+//	String 	VelbusRefresh 	"Velbus Refresh"
+//	String 	ExternalIP		"External IP"
+
+
+
+//		Group  TestItem_Thermostat					"TestItem Thermostat"					<temperature>								{ga="Thermostat" [roomHint="TestItem", modes="off=SAFE,heat=DAY,eco=NIGHT,on=DAY"], alexa="Endpoint.Thermostat" }
+//		Number TestItem_CurrentTemperature 			"TestItem Current Temperature" 			<heating>	( TestItem_Thermostat ,WholeHouse_CurrentTemperature		)	
+//		Number TestItem_CurrentTargetTemperature 	"TestItem Current Target Temperature"	<heating>	( TestItem_Thermostat ,WholeHouse_CurrentTargetTemperature	)	
+//		String TestItem_ThermostatMode 				"TestItem Thermostat mode"	  	 		<heating>	( TestItem_Thermostat, WholeHouse_ThermostatMode			)	
+//		String TestItem_ThermostatOperatingMode 	"TestItem Thermostat operating mode"	<heating>	( TestItem_Thermostat, WholeHouse_ThermostatOperatingMode	)	
+//
+//
+//
+//
+//
+//		Number TestItem_HeatingComfortTarget 	"TestItem Heating Comfort Target Temperature"	<temperature>     ( WholeHouse_HeatingComfortTarget 	)
+//		Number TestItem_HeatingDayTarget 		"TestItem Heating Day Target Temperature"		<temperature>     ( WholeHouse_HeatingDayTarget 		)
+//		Number TestItem_HeatingNightTarget 		"TestItem Heating Night Target Temperature"		<temperature>     ( WholeHouse_HeatingNightTarget 		)
+//		Number TestItem_HeatingAntifrostTarget	"TestItem Heating Antifrost Target Temperature"<temperature>      ( WholeHouse_HeatingAntifrostTarget	)
+//		
+//		
+//		Number TestItem_CoolingComfortTarget	 "TestItem Cooling Comfort Target Temperature"	<temperature>     (	WholeHouse_CoolingComfortTarget 	)
+//		Number TestItem_CoolingDayTarget		"TestItem Cooling Day Target Temperature"	  	<temperature>     (	WholeHouse_CoolingDayTarget			)
+//		Number TestItem_CoolingNightTarget 		"TestItem Cooling Night Target Temperature"		<temperature>     (	WholeHouse_CoolingNightTarget 		)
+//		Number TestItem_CoolingSafeTarget		"TestItem Cooling Safe Target Temperature"		<temperature>     (	WholeHouse_CoolingSafeTarget		)
+	  
+
+// Edit the following to suit the relay channels in use	
+	
+//	Switch TestItem_HeatingRelay  	"TestItem Heating Relay"	<radiator>	(WholeHouse_HeatingRelay_Count,WholeHouse_HeatingRelay) 
+// 	Switch TestItem_CoolingRelay  	"TestItem Cooling Relay"	<climate>	(WholeHouse_CoolingRelay_Count,WholeHouse_CoolingRelay) 
+
+
+	Group	ColourPickers		"All Colour Pickers"
+
+
+// Edit the following to suit the Dimmer channels in use - Any colour item should be put into the (ColourPickers) group
+	
+	Color	TestItem01Colour				"Test Colour 1 Colour Picker"		<colorpicker>		(ColourPickers, gLoungeLight)	["light"]
+	Dimmer	TestItem01Colour_RED  			"Test Colour 1 Red"					<slider>		
+	Dimmer	TestItem01Colour_GREEN  		"Test Colour 1 Green"				<slider>		
+	Dimmer	TestItem01Colour_BLUE  			"Test Colour 1 Blue"				<slider>		
+	Dimmer	TestItem01Colour_WHITE 			"Test Colour 1 White"				<slider>			(gLoungeLight)					["Light"]	
+
+
+	Color	TestItem02Colour			"Test Colour 2 Colour picker"		<colorpicker>	(ColourPickers)	["light"]
+	Dimmer	TestItem02Colour_RED  		"Test Colour 2 Red"					<slider>				
+	Dimmer	TestItem02Colour_GREEN		"Test Colour 2 Green"				<slider>				
+	Dimmer	TestItem02Colour_BLUE 		"Test Colour 2 Blue"				<slider>				
+	Dimmer	TestItem02Colour_WHITE		"Test Colour 2 White"				<slider>			["Light"]
+
+
+// Mains dimmer
+//	Dimmer	MainsDimmer01  	"Mains Dimmer"				<slider>		{channel="velbus:vmbdmir:VelbusNetworkBridge:D1:CH1", ga="Light" [roomHint="Model"], alexa="PowerController.powerState,BrightnessController.brightness,PowerLevelController.powerLevel"}
+	
+	
+// Lighting	
+
+	Switch LightingRelay01  	"Lighting Relay 01"		["Switchable"]  {channel="velbus:vmb4ryno:VelbusNetworkBridge:74:CH1", alexa="PowerController.powerState", expire="1h,command=OFF"}	// will reset to OFF after 1 hour
+//	Switch LightingRelay02  	"Lighting Relay 02"	  {channel="velbus:vmb4ryno:VelbusNetworkBridge:74:CH2", alexa="PowerController.powerState"}
+//	Switch LightingRelay03  	"Lighting Relay 03"	  {channel="velbus:vmb4ryno:VelbusNetworkBridge:74:CH3", alexa="PowerController.powerState"}
+//	Switch LightingRelay04  	"Lighting Relay 04"	  {channel="velbus:vmb4ryno:VelbusNetworkBridge:74:CH4", alexa="PowerController.powerState"}
+
+
+// VMB7IN - Energy monitoring / pulse counter, Add Unit of Measurement and icon as required
+//	Number	VMB7IN_0A_Counter_1					"Electricity Usage Total"		<energy>	{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter1"}
+//	Number	VMB7IN_0A_Counter_1_Current			"Electricity Usage Current"		<energy>	{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter1Current"}
+//	Number	VMB7IN_0A_Counter_2					"Gas Usage"						<gas>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter"}
+//	Number	VMB7IN_0A_Counter_2_Current			"Gas Usage Current"				<gas>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter2Current"}
+//	Number	VMB7IN_0A_Counter_3					"All Water usage"				<flow>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter3"}
+//	Number	VMB7IN_0A_Counter_3_Current			"All Water usage Current"		<flow>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter3Current"}
+//	Number	VMB7IN_0A_Counter_4					"Hot Water usage"				<flow>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter4"}
+//	Number	VMB7IN_0A_Counter_4_Current			"Hot Water usage Current"		<flow>		{channel="velbus:vmb7in:VelbusNetworkBridge:0A:counter#counter4Current"}
+
+
+
+// Edit the following to suit the relay channels in use	
+	
+//	Switch Loft1RY_CH1  	"Loft 12V PSU"			<switch>			{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH1"}
+//	Switch Loft1RY_CH2  	"Loft 1RY Unused"							{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH2"}
+//	Switch Loft1RY_CH3  	"Loft 1RY Lounge Fan"						{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH3"} // Used in Lounge GPO
+//	Switch Loft1RY_CH4  	"Lounge as Bedroom"		<bedroom_blue>		{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH4", ga="switch" [ tfaAck=true ], alexa="PowerController.powerState"}
+//	Switch Loft1RY_CH5  	"House Awake"			<alarm>				{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH5"}
+
+
+//	Meteo channels
+//	Number:Temperature Meteo_Temperature	"Weather Station Temperature"	<temperature>	{channel="velbus:vmbmeteo:VelbusNetworkBridge:FE:weatherStation#CH10"}
+//	Number:Length Meteo_Rainfall			"Weather Station Rainfall"		<rain>			{channel="velbus:vmbmeteo:VelbusNetworkBridge:FE:weatherStation#CH11"}
+//	Number:Illuminance Meteo_LightLevel		"Weather Station Light Level"	<sun>			{channel="velbus:vmbmeteo:VelbusNetworkBridge:FE:weatherStation#CH12"}
+//	Number:Speed Meteo_Windspeed			"Weather Station Wind Speed"	<wind>			{channel="velbus:vmbmeteo:VelbusNetworkBridge:FE:weatherStation#CH13"}
+
+
+// Motor controllers - blinds, curtains, windows, projection screens etc
+
+// or Alexa command PercentageController.percentage
+
+
+//	Rollershutter 	Door	 "Door"		{channel="velbus:vmb2ble:VelbusNetworkBridge:61:CH1"	,	alexa="RangeController.rangeValue" [category="INTERIOR_BLIND", friendlyNames="@Setting.Opening", supportedRange="0:100:10", unitOfMeasure="Percent", actionMappings="Close=100,Open=0,Lower=(+10),Raise=(-10)", stateMappings="Closed=100,Open=0:99"]}
+//	Rollershutter 	Roof 	 "Roof"		{channel="velbus:vmb2ble:VelbusNetworkBridge:61:CH2"	,	alexa="RangeController.rangeValue" [category="INTERIOR_BLIND", friendlyNames="@Setting.Opening", supportedRange="0:100:10", unitOfMeasure="Percent", actionMappings="Close=100,Open=0,Lower=(+10),Raise=(-10)", stateMappings="Closed=100,Open=0:99"]}
+
+
+
+
+
+	// Ensure these groups are active in at least 1 Items file and add the Minute and Hour limiting rule
+
+// Group 	g_Minute		"Limit Alarm Minute"
+// Group 	g_Hour			"Limit Alarm Hour"
+
+
+	Switch TestItem_ClockAlarm_ClockAlarm1Enabled 			"TestItem Alarm 1 Enabled"							
+	String TestItem_ClockAlarm_ClockAlarm1Type 				"TestItem Alarm 1 Type"								
+	Number TestItem_ClockAlarm_ClockAlarm1WakeupHour		"TestItem Alarm 1 Wake Hour"		( g_Hour )		
+	Number TestItem_ClockAlarm_ClockAlarm1WakeupMinute		"TestItem Alarm 1 Wake Minute"		( g_Minute )	
+	Number TestItem_ClockAlarm_ClockAlarm1BedtimeHour		"TestItem Alarm 1 Bed Hour"			( g_Hour )		
+	Number TestItem_ClockAlarm_ClockAlarm1BedtimeMinute		"TestItem Alarm 1 Bed Minute"		( g_Minute )	
+	Switch TestItem_ClockAlarm_ClockAlarm2Enabled			"TestItem Alarm 2 Enabled"							
+	String TestItem_ClockAlarm_ClockAlarm2Type           	"TestItem Alarm 2 Type"								
+	Number TestItem_ClockAlarm_ClockAlarm2WakeupHour    	"TestItem Alarm 2 Wake Hour"		( g_Hour )		
+	Number TestItem_ClockAlarm_ClockAlarm2WakeupMinute   	"TestItem Alarm 2 Wake Minute"		( g_Minute )	
+	Number TestItem_ClockAlarm_ClockAlarm2BedtimeHour   	"TestItem Alarm 2 Bed Hour"			( g_Hour )		
+	Number TestItem_ClockAlarm_ClockAlarm2BedtimeMinute  	"TestItem Alarm 2 Bed Minute"		( g_Minute )	
+
+
+
+
+
+// OLED Extras
+//	String	TestItem_Memo					"TestItem Memotext"				<text>					{channel="velbus:vmbgpod:TestItemOD:05:oledDisplay#MEMO",	ga="text"}
+//	Switch	TestItem_Screensaver			"TestItem Screen saver"			<screen>				{channel="velbus:vmbgpod:TestItemOD:05:oledDisplay#SCREENSAVER"}
+
+
+// Button mimicking - Send "PRESSED" or "LONG_PRESSED" to this string
+
+//	String	TestItem_Button01	"TestItem Button 1"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH1", expire="1s,state=RELEASED"} 	 //reverts to Released after 1 second
+//	String	TestItem_Button02	"TestItem Button 2"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH2", expire="1s,state=RELEASED"}
+//	String	TestItem_Button03	"TestItem Button 3"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH3", expire="1s,state=RELEASED"}
+//	String	TestItem_Button04	"TestItem Button 4"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH4", expire="1s,state=RELEASED"}
+//	String	TestItem_Button05	"TestItem Button 5"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH5", expire="1s,state=RELEASED"}
+//	String	TestItem_Button06	"TestItem Button 6"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH6", expire="1s,state=RELEASED"}
+//	String	TestItem_Button07	"TestItem Button 7"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH7", expire="1s,state=RELEASED"}
+//	String	TestItem_Button01	"TestItem Button 8"											{channel="velbus:vmbgpod:VelbusNetworkBridge:05:button#CH8", expire="1s,state=RELEASED"}
+
+
+// LED Feedback
+//	String	TestItem_LED_Feedback_BT1 		"TestItem LED Feedback Button 1"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH1"}
+//	String	TestItem_LED_Feedback_BT2 		"TestItem LED Feedback Button 2"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH2"}
+//	String	TestItem_LED_Feedback_BT3 		"TestItem LED Feedback Button 3"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH3"}
+//	String	TestItem_LED_Feedback_BT4 		"TestItem LED Feedback Button 4"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH4"}
+//	String	TestItem_LED_Feedback_BT5 		"TestItem LED Feedback Button 5"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH5"}
+//	String	TestItem_LED_Feedback_BT6 		"TestItem LED Feedback Button 6"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH6"}
+//	String	TestItem_LED_Feedback_BT7 		"TestItem LED Feedback Button 7"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH7"}
+//	String	TestItem_LED_Feedback_BT8 		"TestItem LED Feedback Button 8"					{channel="velbus:vmbgpod:VelbusNetworkBridge:05:feedback#CH8"}
+
+
+
+
+// Useful information
+
+// https://www.openhab.org/docs/ecosystem/alexa/
+
+// https://www.openhab.org/docs/ecosystem/google-assistant/

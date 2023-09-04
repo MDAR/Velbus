@@ -1,0 +1,105 @@
+	String	ExternalIP			"External IP"
+
+	String	VelbusRefresh		"Velbus Refresh"
+	
+	String BroadcastNotification	"Broadcast Notification"
+	
+	String openHABCloudCheck	"Check openHAB Cloud status"	
+
+//	Switch	GardenTap			"Garden Water tap 1Hr"				{channel="velbus:vmb1ryno:VelbusNetworkBridge:76:CH1",expire="1h,command=OFF"	,ga="Valve" [roomHint="Garden"], alexa="PowerController.powerState"}
+//
+//	Switch	DoorRelease			"Door Release"						{channel="velbus:vmb1ryno:VelbusNetworkBridge:67:CH1"	, expire="5s,command=OFF",	ga="SecuritySystem" [ tfaPin="1234" ,roomHint="Hallway"], alexa="PowerController.powerState"}
+//
+//	Switch	CabinSecurity		"Cabin Security"					{channel="velbus:vmb1ryno:VelbusNetworkBridge:69:CH3"	,ga="SecuritySystem" [ tfaPin="1234" ,roomHint="Cabin"], alexa="PowerController.powerState"}
+//
+//	Switch	CabinBell			"Cabin Bell"						{channel="velbus:vmb4ryld:VelbusNetworkBridge:02:CH1"	, expire="5m,state=OFF"	,ga="SecuritySystem" [ tfaAck=true  ,roomHint="Cabin"], alexa="PowerController.powerState"}
+//	
+//	Switch	DoorBell			"Door Bell"							{channel="velbus:vmb4ryno:VelbusNetworkBridge:74:CH4"	, expire="5m,state=OFF"	,ga="SecuritySystem" [ tfaAck=true  ,roomHint="Hallway"], alexa="PowerController.powerState"}
+//
+//	Switch	TPLink01_Power		"TP Link 01 Power"					{channel="tplinksmarthome:hs100:0D488E:switch"			,ga="Outlet" [roomHint="Lounge"]			, alexa="PowerController.powerState"}
+//	Switch	TPlink01_LED		"TP Link 01 LED"					{channel="tplinksmarthome:hs100:0D488E:led"}
+//	Number	TPLink01_RSSI		"TP Link 01 RSSI"					{channel="tplinksmarthome:hs100:0D488E:rssi"}
+
+//	Switch 	AllOff				"All OFF"							{channel="velbus:vmb1ryno:VelbusNetworkBridge:69:CH5",												alexa="PowerController.powerState", expire="2s,command=OFF"}
+
+//	Switch HouseAwake			"House Awake"		<house>			{channel="velbus:vmb1ryno:VelbusNetworkBridge:71:CH5"}
+
+
+	// HabPanel
+	
+//	String	HABPanelSelect		"Select Panel"
+//	String	HABPanelSpeech		"HABPanel Announcement"
+
+// Restore group
+
+
+//	Group	G_Restore	"Restore on restart"
+//// Global Alarm times
+//
+//	Group 	g_Minute		"Limit Alarm Minute"
+//	Group 	g_Hour			"Limit Alarm Hour"
+//	
+//	Group	G_Global_Alarm1	"Group for Global alarm 1"
+//	Group	G_Global_Alarm2	"Group for Global alarm 2"
+//
+//	Switch 	Global_ClockAlarm_ClockAlarm1Enabled 			"Global Alarm 1 Enabled"		   (G_Global_Alarm1,G_Restore)					{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm1Enabled"}
+//	String	Global_ClockAlarm_ClockAlarm1Type 				"Global Alarm 1 Type"															{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm1Type"}
+//	Number 	Global_ClockAlarm_ClockAlarm1WakeupHour			"Global Alarm 1 Wake Hour"		   (G_Global_Alarm1,G_Restore,g_Hour)			{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm1WakeupHour"}
+//	Number 	Global_ClockAlarm_ClockAlarm1WakeupMinute		"Global Alarm 1 Wake Minute"	   (G_Global_Alarm1,G_Restore,g_Minute)			{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm1WakeupMinute"}
+//	Number 	Global_ClockAlarm_ClockAlarm1BedtimeHour		"Global Alarm 1 Bed Hour"		   (G_Global_Alarm1,G_Restore,g_Hour)			{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm1BedtimeHour"}
+//	Number 	Global_ClockAlarm_ClockAlarm1BedtimeMinute		"Global Alarm 1 Bed Minute"		   (G_Global_Alarm1,G_Restore,g_Minute)			{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm1BedtimeMinute"}
+//
+//
+//	Switch Global_ClockAlarm_ClockAlarm2Enabled				"Global Alarm 2 Enabled"		   (G_Global_Alarm2,G_Restore)					{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm2Enabled"}
+//	String	Global_ClockAlarm_ClockAlarm2Type 				"Global Alarm 2 Type"															{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm2Type"}
+//	Number Global_ClockAlarm_ClockAlarm2WakeupHour    		"Global Alarm 2 Wake Hour"		   (G_Global_Alarm2,G_Restore,g_Hour)			{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm2WakeupHour"}
+//	Number Global_ClockAlarm_ClockAlarm2WakeupMinute  	 	"Global Alarm 2 Wake Minute"	   (G_Global_Alarm2,G_Restore,g_Minute)			{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm2WakeupMinute"}
+//	Number Global_ClockAlarm_ClockAlarm2BedtimeHour   		"Global Alarm 2 Bed Hour"		   (G_Global_Alarm2,G_Restore,g_Hour)			{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm2BedtimeHour"}
+//	Number Global_ClockAlarm_ClockAlarm2BedtimeMinute  		"Global Alarm 2 Bed Minute"		   (G_Global_Alarm2,G_Restore,g_Minute)			{channel="velbus:networkbridge:VelbusNetworkBridge:bridgeClockAlarm#clockAlarm2BedtimeMinute"}
+
+
+
+
+
+// Google Attributes, as advised here - https://www.openhab.org/docs/ecosystem/google-assistant/
+//		
+//		Currently the following metadata values are supported (also depending on Googles API capabilities):
+//		
+//		Switch / Dimmer / Color { ga="Light" }
+//		Switch { ga="Switch" }
+//		Switch { ga="Outlet" }
+//		Switch { ga="CoffeeMaker" }
+//		Switch { ga="WaterHeater" }
+//		Switch { ga="Fireplace" }
+//		Switch { ga="Valve" }
+//		Switch { ga="Sprinkler" }
+//		Switch { ga="Vacuum" }
+//		Switch { ga="Scene" }
+//		Switch { ga="Lock" [ tfaAck=true ] }
+//		Switch { ga="SecuritySystem" [ tfaPin="1234" ] }
+//		Dimmer { ga="Speaker" }
+//		Switch / Dimmer { ga="Fan" [ speeds="0=away:zero,50=default:standard:one,100=high:two", lang="en", ordered=true ] } //(for Dimmer the options have to be set)
+//		Switch / Dimmer { ga="Hood" }
+//		Switch / Dimmer { ga="AirPurifier" }
+//		Rollershutter { ga="Awning" [ inverted=true ] } //(all Rollershutter items can use the inverted option)
+//		Rollershutter { ga="Blinds" }
+//		Rollershutter { ga="Curtain" }
+//		Rollershutter { ga="Door" }
+//		Rollershutter { ga="Garage" }
+//		Rollershutter { ga="Gate" }
+//		Rollershutter { ga="Pergola" }
+//		Rollershutter { ga="Shutter" }
+//		Rollershutter { ga="Window" }
+//		Group { ga="Thermostat" }
+//		Number { ga="thermostatTemperatureAmbient" } //as part of Thermostat group
+//		Number { ga="thermostatHumidityAmbient" } //as part of Thermostat group
+//		Number { ga="thermostatTemperatureSetpoint" } //as part of Thermostat group
+//		Number / String { ga="thermostatMode" } //as part of Thermostat group
+//		String { ga="Camera" [ protocols="hls,dash" ] }
+
+
+
+
+//	Amazon Atributes, as advised here - https://www.openhab.org/docs/ecosystem/alexa/
+//	https://www.amazon.co.uk/openHAB-Foundation/dp/B01MTY7Z5L
+//
